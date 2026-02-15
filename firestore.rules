@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users collection
+    match /users/{userId} {
+      // Users can only read/write their own profile
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      
+      // Portfolio subcollection
+      match /portfolio/{portfolioId} {
+        // Users can only access their own portfolio items
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+        
+        // Validate portfolio item structure
+        allow create: if request.auth != null 
+          && request.auth.uid == userId
+          && request.resource.data.keys().hasAll(['symbol', 'name', 'quantity', 'buyPrice', 'currentPrice', 'sector', 'addedAt'])
+          && request.resource.data.quantity is number
+          && request.resource.data.quantity > 0
+          && request.resource.data.buyPrice is number
+          && request.resource.data.buyPrice > 0;
+          
+        allow update: if request.auth != null 
+          && request.auth.uid == userId;
+          
+        allow delete: if request.auth != null 
+          && request.auth.uid == userId;
+      }
+    }
+    
+    // Deny all other access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
