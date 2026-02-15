@@ -9,6 +9,7 @@ import PremiumButton from './ui/PremiumButton';
 import LiveStockSearch from './ui/LiveStockSearch';
 import UpgradeModal from './modals/UpgradeModal';
 import { useNavigate } from 'react-router-dom';
+import { Plus } from 'lucide-react';
 
 export default function AddStockForm() {
   const addStock = usePortfolioStore(state => state.addStock);
@@ -111,12 +112,17 @@ export default function AddStockForm() {
 
   return (
     <>
-      <Card className="p-6">
-        <h2 className="text-xl font-semibold mb-6">Add Stock</h2>
+      <Card className="p-8 h-full">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-10 h-10 rounded-xl bg-cyan/10 flex items-center justify-center">
+            <Plus size={20} className="text-cyan" />
+          </div>
+          <h2 className="text-xl font-semibold">Add Stock</h2>
+        </div>
         
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <LiveStockSearch
-            label="Stock"
+            label="Stock Symbol"
             onSelect={handleStockSelect}
             error={errors.symbol}
           />

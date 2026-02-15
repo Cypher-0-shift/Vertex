@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+import { PieChart as PieChartIcon } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 import { usePortfolioStore } from '../../store/portfolioStore';
 import { formatINR } from '../../utils/format';
@@ -21,11 +23,12 @@ export default function SectorChart() {
 
   if (allocation.length === 0) {
     return (
-      <Card className="p-6">
-        <h2 className="text-xl font-semibold mb-6">Sector Allocation</h2>
-        <p className="text-center text-white/40 py-8">
-          Add stocks to see sector allocation
-        </p>
+      <Card className="p-8 flex flex-col items-center justify-center min-h-[500px]">
+        <div className="w-16 h-16 rounded-full bg-cyan/10 flex items-center justify-center mb-4">
+          <PieChartIcon size={32} className="text-cyan/40" />
+        </div>
+        <p className="text-white/40 text-center">No sector data yet</p>
+        <p className="text-white/30 text-sm text-center mt-2">Add stocks to see distribution</p>
       </Card>
     );
   }
@@ -37,7 +40,7 @@ export default function SectorChart() {
   }));
 
   return (
-    <Card className="p-6">
+    <Card className="p-8">
       <h2 className="text-xl font-semibold mb-6">Sector Allocation</h2>
       
       <ResponsiveContainer width="100%" height={300}>
@@ -78,7 +81,12 @@ export default function SectorChart() {
 
       <div className="mt-6 space-y-2">
         {allocation.map(item => (
-          <div key={item.sector} className="flex justify-between items-center text-sm hover:bg-white/[0.03] p-2 rounded-lg transition-colors duration-200">
+          <motion.div 
+            key={item.sector} 
+            className="flex justify-between items-center text-sm hover:bg-white/[0.03] p-2 rounded-lg transition-colors duration-200"
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+          >
             <div className="flex items-center gap-2">
               <div 
                 className="w-3 h-3 rounded-full" 
@@ -90,7 +98,7 @@ export default function SectorChart() {
               <div className="font-medium">{formatINR(item.value)}</div>
               <div className="text-white/40 text-xs">{item.percentage.toFixed(1)}%</div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </Card>
