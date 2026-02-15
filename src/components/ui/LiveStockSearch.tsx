@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { searchStocks, getStockQuote, StockSearchResult } from '../../services/stockApi';
+import { searchStocks, StockSearchResult } from '../../services/stockApi';
 
 interface LiveStockSearchProps {
   label?: string;
@@ -16,7 +16,6 @@ export default function LiveStockSearch({
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState<StockSearchResult[]>([]);
-  const [selectedStock, setSelectedStock] = useState<string>('');
   const wrapperRef = useRef<HTMLDivElement>(null);
   const searchTimeoutRef = useRef<NodeJS.Timeout>();
 
@@ -63,8 +62,7 @@ export default function LiveStockSearch({
     }, 500);
   };
 
-  const handleStockSelect = async (result: StockSearchResult) => {
-    setSelectedStock(`${result.name} (${result.symbol})`);
+  const handleStockSelect = (result: StockSearchResult) => {
     setSearchTerm(`${result.name} (${result.symbol})`);
     setIsOpen(false);
     onSelect(result.symbol, result.name);

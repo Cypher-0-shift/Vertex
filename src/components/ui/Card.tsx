@@ -4,14 +4,12 @@ import { motion } from 'framer-motion';
 interface CardProps {
   children: ReactNode;
   className?: string;
-  variant?: 'glass' | 'solid' | 'metric';
   hover?: boolean;
 }
 
 export default function Card({ 
   children, 
   className = '', 
-  variant = 'glass',
   hover = false 
 }: CardProps) {
   if (hover) {

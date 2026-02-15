@@ -1,7 +1,8 @@
 import { PortfolioItem } from '../store/portfolioStore';
 import { RiskBreakdown } from './riskEngine';
 import { calculateCurrentValue } from './calculations';
-import { IndianSector } from '../data/stocks';
+
+type IndianSector = 'IT' | 'Banking' | 'Energy' | 'FMCG' | 'Infrastructure' | 'Pharma' | 'Automobile' | 'Metals';
 
 export interface RiskInsight {
   title: string;

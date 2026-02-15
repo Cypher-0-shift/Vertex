@@ -168,7 +168,7 @@ const calculateTimingRiskScore = (history: PortfolioHistoryEntry[]): number => {
 };
 
 export const analyzeBehavior = (
-  portfolioItems: PortfolioItem[],
+  _portfolioItems: PortfolioItem[],
   history: PortfolioHistoryEntry[]
 ): BehaviorBreakdown => {
   const overtradingScore = calculateOvertradingScore(history);

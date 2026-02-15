@@ -1,12 +1,14 @@
 import { usePortfolioStore } from '../store/portfolioStore';
+import { useAuthStore } from '../store/authStore';
 import { formatINR, formatPercent } from '../utils/format';
 import { calculateInvestedValue, calculateCurrentValue, calculateGainLoss, calculateGainLossPercent } from '../utils/calculations';
-import Card from './Card';
-import Button from './Button';
+import Card from './ui/Card';
+import PremiumButton from './ui/PremiumButton';
 
 export default function PortfolioTable() {
   const portfolioItems = usePortfolioStore(state => state.portfolioItems);
   const removeStock = usePortfolioStore(state => state.removeStock);
+  const user = useAuthStore(state => state.user);
 
   if (portfolioItems.length === 0) {
     return (
@@ -64,12 +66,12 @@ export default function PortfolioTable() {
                     <div className="text-xs">{formatPercent(gainLossPercent)}</div>
                   </td>
                   <td className="py-4 px-2 text-right">
-                    <Button
+                    <PremiumButton
                       variant="danger"
-                      onClick={() => removeStock(item.id)}
+                      onClick={() => user && removeStock(user.uid, item.id)}
                     >
                       Remove
-                    </Button>
+                    </PremiumButton>
                   </td>
                 </tr>
               );

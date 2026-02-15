@@ -45,7 +45,6 @@ export default function MetricCard({
 
   return (
     <Card 
-      variant="metric" 
       className={`${getGlow()} ${className}`}
       hover
     >

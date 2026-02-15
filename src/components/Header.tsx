@@ -21,7 +21,6 @@ export default function Header() {
 
         <div className="flex flex-col sm:flex-row gap-6">
           <Card 
-            variant="metric" 
             className="flex-1 sm:min-w-[240px] p-6"
             hover
           >
@@ -32,7 +31,6 @@ export default function Header() {
           </Card>
 
           <Card 
-            variant="metric" 
             className="flex-1 sm:min-w-[240px] p-6"
             hover
           >

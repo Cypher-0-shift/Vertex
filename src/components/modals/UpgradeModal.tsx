@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Check, Lock } from 'lucide-react';
+import { X, Check } from 'lucide-react';
 import { getPlanFeatures } from '../../utils/featureAccess';
 
 interface UpgradeModalProps {

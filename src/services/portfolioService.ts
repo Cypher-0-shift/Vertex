@@ -43,9 +43,9 @@ export const portfolioService = {
   },
 
   async updateStockPrice(
-    userId: string,
-    stockId: string,
-    currentPrice: number
+    _userId: string,
+    _stockId: string,
+    _currentPrice: number
   ): Promise<void> {
     // Price updates are handled in memory, not persisted to Firestore
     // This keeps the database lean and reduces write operations

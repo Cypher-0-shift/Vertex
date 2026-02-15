@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { TrendingUp, TrendingDown } from 'lucide-react';
 import Card from '../ui/Card';
-import PremiumSelect from '../ui/PremiumSelect';
 
 interface PriceData {
   date: string;
@@ -94,11 +93,15 @@ export default function StockPriceChart({ stocks }: StockPriceChartProps) {
         </div>
         
         <div className="w-48">
-          <PremiumSelect
+          <select
             value={selectedStock}
             onChange={(e) => setSelectedStock(e.target.value)}
-            options={stocks.map(s => ({ value: s.symbol, label: s.symbol }))}
-          />
+            className="w-full px-4 py-2 bg-white/[0.06] backdrop-blur-sm border border-white/10 rounded-xl text-white focus:outline-none focus:border-cyan/50 focus:ring-2 focus:ring-cyan/20 transition-all duration-200"
+          >
+            {stocks.map(s => (
+              <option key={s.symbol} value={s.symbol}>{s.symbol}</option>
+            ))}
+          </select>
         </div>
       </div>
 

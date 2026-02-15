@@ -9,7 +9,6 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const logout = useAuthStore((state) => state.logout);
-  const user = useAuthStore((state) => state.user);
   const getUserPlan = useAuthStore((state) => state.getUserPlan);
   const userPlan = getUserPlan();
 

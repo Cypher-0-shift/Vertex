@@ -54,7 +54,6 @@ export const generateQuickRebalanceOptions = (
   if (portfolioItems.length === 0) return suggestions;
 
   const totalValue = portfolioItems.reduce((sum, item) => sum + calculateCurrentValue(item), 0);
-  const currentRisk = calculatePortfolioRisk(portfolioItems, history);
 
   // Suggestion 1: Reduce top holding to 30%
   const topHolding = portfolioItems.reduce((max, item) => 

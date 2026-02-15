@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import { Shield, Brain, Target, Shuffle, TrendingUp, BarChart3 } from 'lucide-react';
+import { Shield, Brain, Target, Shuffle, BarChart3 } from 'lucide-react';
 import AnimatedBackground from '../components/layout/AnimatedBackground';
 import { useAuthStore } from '../store/authStore';
 

@@ -37,9 +37,6 @@ export interface StockDetails {
 const TWELVE_DATA_API_KEY = 'demo'; // Replace with actual key from twelvedata.com
 const TWELVE_DATA_BASE_URL = 'https://api.twelvedata.com';
 
-// Fallback: Using Yahoo Finance via RapidAPI alternative
-const YAHOO_FINANCE_BASE_URL = 'https://query1.finance.yahoo.com/v1';
-
 // Map common Indian stock symbols to Yahoo Finance format
 const mapToYahooSymbol = (symbol: string): string => {
   // If already has exchange suffix, return as is
